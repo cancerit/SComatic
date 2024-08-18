@@ -51,9 +51,7 @@ COPY bed_files_of_interest /opt/SComatic/bed_files_of_interest
 COPY example_data /opt/SComatic/example_data
 
 # Generate samtools index
-RUN /bin/bash -c "ls /opt && ls /opt/SComatic && ls /opt/SComatic/example_data &&\
-		chmod 644 /opt/SComatic/example_data/chr10.fa && \
-    ls -l /opt/SComatic/example_data/chr10.fa && \
+RUN /bin/bash -c "gunzip /opt/SComatic/example_data/chr10.fa.gz && \
     source activate ${CONDA_DEFAULT_ENV} && \
     which samtools && \
     samtools faidx /opt/SComatic/example_data/chr10.fa"
